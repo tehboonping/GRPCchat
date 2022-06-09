@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  grpc:
+    container_name: chat_grpc
+    build: ./grpc/
+    volumes:
+      - ./grpc/:/workspace
+    ports:
+      - 80:80
+    command:
+      sh -c 'tools/build.sh'
+    depends_on:
+        - mysql
+    stdin_open: true
+    tty: true
+
+  mysql:
+    container_name: chat_mysql
+    build: ./mysql/    
+    volumes:
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./mysql/db:/var/lib/mysql
+
+  phpmyadmin:
+    container_name: chat_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=pass
+    ports:
+      - 84:80
+    depends_on:
+      - mysql

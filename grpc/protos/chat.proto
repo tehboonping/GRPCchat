@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package grpc_chat;
+
+service chatting {
+	rpc sendMessage (Request) returns (Response) {}
+}
+
+message Request {
+	string name = 1;
+	string message = 2;
+	string posttime = 3;
+}
+
+message Response {
+	string name = 1;
+	string message = 2;
+	string posttime = 3;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/style.css" rel="stylesheet">
+    <title>チャット</title>
+</head>
+<body>
+    <h1>チャット</h1>
+    <form id="room-post">
+        <h2>ルームID</h2>
+        <input class="nameinput" id="roomId" name="roomId" value="0" required>
+        <h2>ユーザ名</h2>
+        <input class="nameinput" type="text" id="username" name="name" placeholder="user1" required>
+        <input class="button0" type="submit" value="入室">
+    </form>
+
+    <script src="socket.io/socket.io.min.js"></script>
+    <script src="JS/index.js"></script>
+</body>
+</html>
